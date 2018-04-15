@@ -48,13 +48,11 @@ public class ClienteDAO {
     }
     
     // Busca cliente por nome.
-    public List<Cliente> buscaNome() {
+    public List<Cliente> buscaNome(String nome) {
+
         Session session = HibernateUtil.getSessionFactory().openSession();
-        
         session.beginTransaction();
-        
-        Criteria crit = session.createCriteria(Cliente.class).add(Restrictions.eq("nome","Brenda"));
-        
+        Criteria crit = session.createCriteria(Cliente.class).add(Restrictions.eq("nome",nome));
         return crit.list();
     }
 }
