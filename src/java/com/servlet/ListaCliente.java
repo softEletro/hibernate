@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author bcustodio
  */
-@WebServlet(name = "BuscaCliente", urlPatterns = {"/BuscaCliente"})
-public class BuscaCliente extends HttpServlet {
+@WebServlet(name = "ListaCliente", urlPatterns = {"/ListaCliente"})
+public class ListaCliente extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{ 
         Cliente cli = new Cliente();
@@ -31,7 +31,7 @@ public class BuscaCliente extends HttpServlet {
         
         req.setAttribute("lista", lista);
         
-        RequestDispatcher rd = req.getRequestDispatcher("/buscaCliente.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/listaCliente.jsp");
         rd.forward(req,resp);
     }
 
