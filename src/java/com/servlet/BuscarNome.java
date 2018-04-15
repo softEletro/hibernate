@@ -35,7 +35,7 @@ public class BuscarNome extends HttpServlet {
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{     
         Cliente cli = new Cliente();
         ClienteDAO dao = new ClienteDAO();
-        List lista = dao.listar();
+        List lista = dao.buscaNome();
         
         req.setAttribute("lista", lista);
         

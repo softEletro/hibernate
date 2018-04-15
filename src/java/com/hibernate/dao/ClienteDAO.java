@@ -53,8 +53,7 @@ public class ClienteDAO {
         
         session.beginTransaction();
         
-        Criteria crit = session.createCriteria(Cliente.class);
-        crit.add(Restrictions.eq("nome","Brenda"));
+        Criteria crit = session.createCriteria(Cliente.class).add(Restrictions.eq("nome","Brenda"));
         
         return crit.list();
     }
