@@ -11,13 +11,14 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author bcustodio
  */
 public class ClienteDAO {
-    
+    // Salva o cliente.
     public void salvar(Cliente cli){
         // Cria e abre uma sessão
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -34,29 +35,8 @@ public class ClienteDAO {
         session.flush();
         session.close();
     }
-    
-    /*public list<Cliente> getList() { 
-        Cliente cli = new Cliente();
-        String cliente = null;
-        Query query = null;
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        
-        session.beginTransaction();
-        
-        // Faz a mágica
-        query = session.createQuery("select * from Cliente");
-        
-        //cliente = (String) query.uniqueResult();
-        
-        session.getTransaction().commit();   
-        
-        return cliente;
-        
-        session.flush();
-        session.close();
-    }*/
 
+    // Lista todos os clientes.
     public List<Cliente> listar() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         
@@ -65,5 +45,17 @@ public class ClienteDAO {
         Criteria cli = session.createCriteria(Cliente.class);
         
         return cli.list();
+    }
+    
+    // Busca cliente por nome.
+    public List<Cliente> buscaNome() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        session.beginTransaction();
+        
+        Criteria crit = session.createCriteria(Cliente.class);
+        crit.add(Restrictions.eq("nome","Brenda"));
+        
+        return crit.list();
     }
 }
