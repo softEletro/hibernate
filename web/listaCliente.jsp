@@ -16,7 +16,7 @@
         <jsp:useBean id="lista" scope="request" class="java.util.List" />
         <% for (int i=0;i<lista.size();i++) {
             Cliente cli = (Cliente)lista.get(i); %>
-            Nome: <%= cli.getNome() %>
+            Nome: <%= cli.getNome() %> <a href="AlterarCliente?id=<%= cli.getId() %>">Alterar</a><br />
         <% } %>
     </body>
 </html>

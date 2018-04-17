@@ -55,4 +55,22 @@ public class ClienteDAO {
         Criteria crit = session.createCriteria(Cliente.class).add(Restrictions.eq("nome",nome));
         return crit.list();
     }
+    
+    // Salva o cliente.
+    public void altera(Cliente cli){
+        // Cria e abre uma sessão
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        // Inicia uma transação
+        session.beginTransaction();
+        
+        // Realiza a operação salvar
+        session.update(cli);
+        
+        // Comita a transação
+        session.getTransaction().commit();
+        
+        // Libera a memória e encerra a sessão
+        session.flush();
+        session.close();
+    }
 }
