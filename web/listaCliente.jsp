@@ -18,5 +18,7 @@
             Cliente cli = (Cliente)lista.get(i); %>
             Nome: <%= cli.getNome() %> <a href="AlterarCliente?id=<%= cli.getId() %>">Alterar</a> <a href="InativarCliente">Inativar</a><br />
         <% } %>
+        <br><br>
+        <%@include file="/pagina.html" %>
     </body>
 </html>
