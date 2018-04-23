@@ -57,7 +57,7 @@ public class ClienteDAO {
     }
     
     // Salva o cliente.
-    public void altera(Cliente cli){
+    public void altera(Cliente cli, int id){
         // Cria e abre uma sessão
         Session session = HibernateUtil.getSessionFactory().openSession();
         // Inicia uma transação
