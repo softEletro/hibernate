@@ -9,6 +9,7 @@ import com.bean.Cliente;
 import com.hibernate.dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,6 @@ public class SalvaCliente extends HttpServlet {
         dao.salvar(cli);
         
         PrintWriter out = resp.getWriter();
-        out.println("Salvo com sucesso!<br>Nome: "+cli.getNome());
+        out.print("<script>alert(\"Salvo com sucesso!\");</script>");
     }
 }
