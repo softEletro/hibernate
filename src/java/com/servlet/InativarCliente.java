@@ -23,12 +23,11 @@ import javax.servlet.http.HttpServletResponse;
 public class InativarCliente extends HttpServlet {       
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        int id = Integer.parseInt(req.getParameter("id"));
-        Cliente cli = new Cliente();
-        cli.setNome("teste");
-        
-        ClienteDAO dao = new ClienteDAO();
-        dao.altera(cli, id);
+        Long id = Long.parseLong(req.getParameter("id"));
+        ClienteDAO dao= new ClienteDAO();
+        Cliente cli = dao.buscaid(id);
+        cli.setNome("xxxxx");
+        dao.altera(cli);
         
         PrintWriter out = resp.getWriter();
         out.println("Salvo com sucesso!<br>Nome: "+cli.getNome());

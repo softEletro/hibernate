@@ -25,12 +25,24 @@ import javax.servlet.http.HttpServletResponse;
 public class AlterarCliente extends HttpServlet {    
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{ 
-        //Cliente cli = new Cliente();
-        int id = Integer.parseInt(req.getParameter("id"));
-        
-        ClienteDAO dao = new ClienteDAO();
-        
-        RequestDispatcher rd = req.getRequestDispatcher("/alterar.jsp");
-        rd.forward(req,resp);
+        Long id = Long.parseLong(req.getParameter("id"));
+        ClienteDAO dao= new ClienteDAO();
+        Cliente cli = dao.buscaid(id);
+        if ("pagina".equals(req.getParameter("action"))) {
+            String nome = cli.getNome();
+            String sobrenome = cli.getSobrenome(); 
+            
+            req.setAttribute("nome", nome);
+            req.setAttribute("sobrenome", sobrenome);
+            req.setAttribute("parametro",req.getParameter("action"));
+            
+            RequestDispatcher rd = req.getRequestDispatcher("/cadastro.jsp");
+            rd.forward(req,resp);
+           
+                    cli.setNome(req.getParameter("nome"));
+                    cli.setSobrenome(req.getParameter("sobrenome"));
+                    dao.altera(cli);
+                
+        }
     }
 }
