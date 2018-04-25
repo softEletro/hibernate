@@ -11,20 +11,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>        
+    <body>
         <jsp:useBean id="nome" scope="request" class="java.lang.String" />
         <jsp:useBean id="sobrenome" scope="request" class="java.lang.String" />
-        <jsp:useBean id="parametro" scope="request" class="java.lang.String" />
-        <%if("pagina".equals(parametro)) { %>        
+        <jsp:useBean id="telefone" scope="request" class="java.lang.String" />
+        <%if(!nome.equals("")) { %>
         <form action="AlterarCliente">
         <% } else { %>
         <form action="SalvaCliente">
         <% } %>
             <label>Nome:</label>
-            <input type="text" id="nome" name="nome" value="<%= nome%>" />
+            <input type="text" id="nome" name="nome" value="<%= nome %>" />
             <label>Sobrenome:</label>
-            <input type="text" id="sobrenome" name="sobrenome" value="<%= sobrenome%>" />
-            
+            <input type="text" id="sobrenome" name="sobrenome" value="<%= sobrenome %>" />
+            <label>Telefone</label>
+            <input type="text" id="telefone" name="telefone" value="<%= telefone %>" />
             
             <input type="submit" id="salva" name="salva" value="Salvar" />
         </form>

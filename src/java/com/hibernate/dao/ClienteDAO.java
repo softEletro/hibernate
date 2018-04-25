@@ -64,6 +64,14 @@ public class ClienteDAO {
          return (Cliente)session.createCriteria(Cliente.class).add(Restrictions.eq("id",id)).uniqueResult();
     }
     
+    // Busca cliente por nome.
+    public Cliente buscarNome(String nome) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+         return (Cliente)session.createCriteria(Cliente.class).add(Restrictions.eq("nome",nome)).uniqueResult();
+    }
+    
     // Salva o cliente.
     public void altera(Cliente cli){
         // Cria e abre uma sessão
@@ -72,14 +80,13 @@ public class ClienteDAO {
         session.beginTransaction();
         
         // Realiza a operação salvar
-        session.update(cli);
+        session.merge(cli);
         
         // Comita a transação
         session.getTransaction().commit();
         
         // Libera a memória e encerra a sessão
         session.flush();
-        session.close();
-        
+        session.close();        
     }
 }

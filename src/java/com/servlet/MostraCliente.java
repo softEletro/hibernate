@@ -9,6 +9,7 @@ import com.bean.Cliente;
 import com.hibernate.dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,19 +21,24 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author bcustodio
  */
-@WebServlet(name = "AlterarCliente", urlPatterns = {"/AlterarCliente"})
-public class AlterarCliente extends HttpServlet {
+@WebServlet(name = "MostraCliente", urlPatterns = {"/MostraCliente"})
+public class MostraCliente extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{ 
-        String nome = req.getParameter("nome");
-           
+        Long id = Long.parseLong(req.getParameter("id"));
+        
         ClienteDAO dao= new ClienteDAO();
-        Cliente cli = dao.buscarNome(nome);
+        Cliente cli = dao.buscaid(id);
         
-        cli.setNome(nome);
-        cli.setSobrenome(req.getParameter("sobrenome"));
-        cli.setTelefone(req.getParameter("telefone"));
-        
-        dao.altera(cli);
+        String nome = cli.getNome();
+        String sobrenome = cli.getSobrenome();
+        String telefone = cli.getTelefone();
+            
+        req.setAttribute("nome", nome);
+        req.setAttribute("sobrenome", sobrenome);
+        req.setAttribute("telefone", telefone);
+            
+        RequestDispatcher rd = req.getRequestDispatcher("/cadastro.jsp");
+        rd.forward(req,resp);
     }
 }

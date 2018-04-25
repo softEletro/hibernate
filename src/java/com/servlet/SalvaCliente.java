@@ -27,6 +27,7 @@ public class SalvaCliente extends HttpServlet {
         Cliente cli = new Cliente();
         cli.setNome(req.getParameter("nome"));
         cli.setSobrenome(req.getParameter("sobrenome"));
+        cli.setTelefone(req.getParameter("telefone"));
         
         ClienteDAO dao = new ClienteDAO();
         dao.salvar(cli);
