@@ -17,6 +17,8 @@
         <jsp:useBean id="telefone" scope="request" class="java.lang.String" />
         <%if(!nome.equals("")) { %>
         <form action="AlterarCliente">
+             <jsp:useBean id="id" scope="request" class="java.lang.Long" />
+             <input type="hidden" id="id" name="id" value="<%= id %>" />
         <% } else { %>
         <form action="SalvaCliente">
         <% } %>
@@ -26,7 +28,7 @@
             <input type="text" id="sobrenome" name="sobrenome" value="<%= sobrenome %>" />
             <label>Telefone</label>
             <input type="text" id="telefone" name="telefone" value="<%= telefone %>" />
-            
+             
             <input type="submit" id="salva" name="salva" value="Salvar" />
         </form>
     </body>

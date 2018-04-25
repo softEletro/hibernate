@@ -37,6 +37,7 @@ public class MostraCliente extends HttpServlet {
         req.setAttribute("nome", nome);
         req.setAttribute("sobrenome", sobrenome);
         req.setAttribute("telefone", telefone);
+        req.setAttribute("id", id);
             
         RequestDispatcher rd = req.getRequestDispatcher("/cadastro.jsp");
         rd.forward(req,resp);

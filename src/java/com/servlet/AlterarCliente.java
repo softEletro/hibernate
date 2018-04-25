@@ -24,12 +24,12 @@ import javax.servlet.http.HttpServletResponse;
 public class AlterarCliente extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{ 
-        String nome = req.getParameter("nome");
+        Long id = Long.parseLong(req.getParameter("id"));
            
         ClienteDAO dao= new ClienteDAO();
-        Cliente cli = dao.buscarNome(nome);
+        Cliente cli = dao.buscaid(id);
         
-        cli.setNome(nome);
+        cli.setNome(req.getParameter("nome"));
         cli.setSobrenome(req.getParameter("sobrenome"));
         cli.setTelefone(req.getParameter("telefone"));
         
