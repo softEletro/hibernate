@@ -32,7 +32,7 @@ public class ListaCliente extends HttpServlet {
         
         HttpSession session = req.getSession(false);
         
-        if (session.getAttribute("id") == null) {
+        if (session == null) {
             int id = 0;
             req.setAttribute("teste", id);
         } else {

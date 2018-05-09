@@ -17,7 +17,7 @@
         
         <%%>
         <jsp:useBean id="teste" scope="request" class="java.lang.Integer" />
-        Pegar variável da sessão - <%= teste %><br><br>
+        Id da variável da sessão: <%= teste %> // <a href="Logout">Sair da sessão</a><br><br>
         <%%>
         
             <% for (int i=0;i<lista.size();i++) {

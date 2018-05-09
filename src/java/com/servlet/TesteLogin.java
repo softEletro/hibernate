@@ -46,8 +46,7 @@ public class TesteLogin extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("id", id);
                 
-                RequestDispatcher rd = req.getRequestDispatcher("ListaCliente");
-                rd.forward(req,resp);
+                resp.sendRedirect("ListaCliente");
             }
         } else {
             PrintWriter out = resp.getWriter();
