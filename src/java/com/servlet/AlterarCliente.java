@@ -32,6 +32,7 @@ public class AlterarCliente extends HttpServlet {
         cli.setNome(req.getParameter("nome"));
         cli.setSobrenome(req.getParameter("sobrenome"));
         cli.setTelefone(req.getParameter("telefone"));
+        cli.setSenha(req.getParameter("senha"));
         
         dao.altera(cli);
     }

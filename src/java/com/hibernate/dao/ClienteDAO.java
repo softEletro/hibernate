@@ -89,4 +89,14 @@ public class ClienteDAO {
         session.flush();
         session.close();        
     }
+    
+    // Verifica nome e senha
+    public Cliente login(String nome, String senha) {        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+         return (Cliente)session.createCriteria(Cliente.class)
+                 .add(Restrictions.eq("nome",nome))
+                 .add(Restrictions.eq("senha",senha))
+                 .uniqueResult();
+    }
 }

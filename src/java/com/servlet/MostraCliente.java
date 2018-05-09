@@ -33,13 +33,15 @@ public class MostraCliente extends HttpServlet {
         String nome = cli.getNome();
         String sobrenome = cli.getSobrenome();
         String telefone = cli.getTelefone();
+        String senha = cli.getSenha();
             
         req.setAttribute("nome", nome);
         req.setAttribute("sobrenome", sobrenome);
         req.setAttribute("telefone", telefone);
+        req.setAttribute("senha", senha);
         req.setAttribute("id", id);
             
-        RequestDispatcher rd = req.getRequestDispatcher("/cadastro.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/alterar.jsp");
         rd.forward(req,resp);
     }
 }

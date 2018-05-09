@@ -12,22 +12,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <jsp:useBean id="nome" scope="request" class="java.lang.String" />
-        <jsp:useBean id="sobrenome" scope="request" class="java.lang.String" />
-        <jsp:useBean id="telefone" scope="request" class="java.lang.String" />
-        <%if(!nome.equals("")) { %>
-        <form action="AlterarCliente">
-             <jsp:useBean id="id" scope="request" class="java.lang.Long" />
-             <input type="hidden" id="id" name="id" value="<%= id %>" />
-        <% } else { %>
         <form action="SalvaCliente">
-        <% } %>
             <label>Nome:</label>
-            <input type="text" id="nome" name="nome" value="<%= nome %>" />
+            <input type="text" id="nome" name="nome" value="" /><br />
             <label>Sobrenome:</label>
-            <input type="text" id="sobrenome" name="sobrenome" value="<%= sobrenome %>" />
+            <input type="text" id="sobrenome" name="sobrenome" value="" /><br />
             <label>Telefone</label>
-            <input type="text" id="telefone" name="telefone" value="<%= telefone %>" />
+            <input type="text" id="telefone" name="telefone" value="" /><br />
+            <label>Senha</label>
+            <input type="password" id="senha" name="senha" value="" /><br />
              
             <input type="submit" id="salva" name="salva" value="Salvar" />
         </form>

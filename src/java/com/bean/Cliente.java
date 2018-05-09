@@ -21,6 +21,15 @@ public class Cliente {
     private String nome;
     private String sobrenome;
     private String telefone;
+    private String senha;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public Long getId() {
         return id;
