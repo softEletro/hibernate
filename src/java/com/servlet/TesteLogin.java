@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,6 +41,11 @@ public class TesteLogin extends HttpServlet {
                 PrintWriter out = resp.getWriter();
                 out.print("<script>alert(\"Nome ou senha incorretos!\");</script>");
             } else {
+                int id = cli.getId();
+                
+                HttpSession session = req.getSession();
+                session.setAttribute("id", id);
+                
                 RequestDispatcher rd = req.getRequestDispatcher("ListaCliente");
                 rd.forward(req,resp);
             }

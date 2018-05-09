@@ -14,6 +14,12 @@
     </head>
     <body>
         <jsp:useBean id="lista" scope="request" class="java.util.List" />
+        
+        <%%>
+        <jsp:useBean id="teste" scope="request" class="java.lang.Integer" />
+        Pegar variável da sessão - <%= teste %><br><br>
+        <%%>
+        
             <% for (int i=0;i<lista.size();i++) {
             Cliente cli = (Cliente)lista.get(i); %>
             Nome: <%= cli.getNome() %> Telefone: <%= cli.getTelefone() %> <a href="MostraCliente?id=<%= cli.getId() %>">Alterar</a> <a href="InativarCliente?id=<%= cli.getId() %>">Inativar</a><br />

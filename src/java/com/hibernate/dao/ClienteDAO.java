@@ -57,7 +57,7 @@ public class ClienteDAO {
     }
     
     // Busca cliente por nome.
-    public Cliente buscaid(Long id) {
+    public Cliente buscaid(int id) {
         
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

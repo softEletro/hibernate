@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,6 +29,15 @@ public class ListaCliente extends HttpServlet {
         Cliente cli = new Cliente();
         ClienteDAO dao = new ClienteDAO();
         List lista = dao.listar();
+        
+        HttpSession session = req.getSession(false);
+        
+        if (session.getAttribute("id") == null) {
+            int id = 0;
+            req.setAttribute("teste", id);
+        } else {
+            req.setAttribute("teste", session.getAttribute("id"));
+        }
         
         req.setAttribute("lista", lista);
         

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MostraCliente extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{ 
-        Long id = Long.parseLong(req.getParameter("id"));
+        int id = Integer.parseInt(req.getParameter("id"));
         
         ClienteDAO dao= new ClienteDAO();
         Cliente cli = dao.buscaid(id);

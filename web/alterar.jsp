@@ -16,7 +16,7 @@
         <jsp:useBean id="sobrenome" scope="request" class="java.lang.String" />
         <jsp:useBean id="telefone" scope="request" class="java.lang.String" />
         <jsp:useBean id="senha" scope="request" class="java.lang.String" />
-        <jsp:useBean id="id" scope="request" class="java.lang.Long" />
+        <jsp:useBean id="id" scope="request" class="java.lang.Integer" />
         
         <form action="AlterarCliente">
              <input type="hidden" id="id" name="id" value="<%= id %>" />
