@@ -30,9 +30,9 @@ public class ListaCliente extends HttpServlet {
         ClienteDAO dao = new ClienteDAO();
         List lista = dao.listar();
         
-        HttpSession session = req.getSession(false);
+        HttpSession session = req.getSession();
         
-        if (session == null) {
+        if (session.getAttribute("id") == null) {
             int id = 0;
             req.setAttribute("teste", id);
         } else {

@@ -14,11 +14,12 @@
     </head>
     <body>
         <jsp:useBean id="lista" scope="request" class="java.util.List" />
-        
-        <%%>
         <jsp:useBean id="teste" scope="request" class="java.lang.Integer" />
-        Id da variável da sessão: <%= teste %> // <a href="Logout">Sair da sessão</a><br><br>
-        <%%>
+        
+        Id da variável da sessão: <%= teste %> 
+        <% if (!teste.equals(0)) { %>
+         // <a href="Logout" style="color: red;">Sair da sessão</a>
+        <% } %><br><br>
         
             <% for (int i=0;i<lista.size();i++) {
             Cliente cli = (Cliente)lista.get(i); %>
