@@ -5,6 +5,7 @@
  */
 package com.bean;
 
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -62,4 +63,4 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-}
+  }

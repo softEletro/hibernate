@@ -7,6 +7,7 @@ package com.hibernate.dao;
 
 import com.bean.Cliente;
 import com.util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -99,4 +100,12 @@ public class ClienteDAO {
                  .add(Restrictions.eq("senha",senha))
                  .uniqueResult();
     }
+      public ArrayList AdicionaItensCarrinho(Cliente dao, ArrayList lista) {
+		// TODO Auto-generated constructor stub
+		if (lista == null){
+			lista = new ArrayList();
+		}
+		lista.add(dao.getNome());
+		return lista;
+	}
 }
