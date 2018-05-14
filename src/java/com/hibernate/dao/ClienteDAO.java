@@ -6,6 +6,7 @@
 package com.hibernate.dao;
 
 import com.bean.Cliente;
+import com.bean.Produto;
 import com.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,4 +109,5 @@ public class ClienteDAO {
 		lista.add(dao.getNome());
 		return lista;
 	}
+     
 }

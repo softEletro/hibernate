@@ -26,9 +26,9 @@ public class adicionar extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
-        List carrinho = (List) session.getAttribute("carrinho");
+        List<Produto> carrinho = (List<Produto>) session.getAttribute("carrinho");
         
-        if (carrinho == null) {
+      if (carrinho == null) {
             /*carrinho = new Vector();
             session.setAttribute("carrinho", carrinho);*/
             resp.sendRedirect("/index.jsp");
@@ -37,10 +37,12 @@ public class adicionar extends HttpServlet {
         String nome = (String) req.getAttribute("nome");
         Double valor = (Double) req.getAttribute("Valor");
         
-        Produto cli = new Produto();
+        Produto produto = new Produto();
+        produto.setNome(nome);
+        produto.setValor(valor);
         
-        carrinho.add(nome);
-        carrinho.add(valor);
+        carrinho.add(produto);
+        
         
         RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
         rd.forward(req,resp);
