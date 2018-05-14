@@ -5,6 +5,9 @@
  */
 package com.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bcustodio
@@ -27,5 +30,11 @@ public class Produto {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+    
+    public List incluirCarrinho(List carrinho) {
+        carrinho = new ArrayList();
+        
+        return carrinho;
     }
 }

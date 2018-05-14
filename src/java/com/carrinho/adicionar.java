@@ -8,6 +8,7 @@ package com.carrinho;
 import com.bean.Produto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,25 +27,34 @@ public class adicionar extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
-        List<Produto> carrinho = (List<Produto>) session.getAttribute("carrinho");
-        
-      if (carrinho == null) {
-            /*carrinho = new Vector();
-            session.setAttribute("carrinho", carrinho);*/
-            resp.sendRedirect("/index.jsp");
-        }
-        
-        String nome = (String) req.getAttribute("nome");
-        Double valor = (Double) req.getAttribute("Valor");
+        List carrinho = (List) session.getAttribute("carrinho");
         
         Produto produto = new Produto();
-        produto.setNome(nome);
-        produto.setValor(valor);
         
-        carrinho.add(produto);
-        
-        
-        RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
-        rd.forward(req,resp);
+        if (carrinho == null) {
+            List car = (List) produto.incluirCarrinho(carrinho);
+            
+            car.add("teste1");
+            car.add("teste2");
+            
+            session.setAttribute("carrinho", car);
+            
+            RequestDispatcher rd = req.getRequestDispatcher("/newjsp.jsp");
+            rd.forward(req,resp);
+        } else {
+            /*String nome = (String) req.getAttribute("nome");
+            Double valor = (Double) req.getAttribute("Valor");
+
+            produto.setNome(nome);
+            produto.setValor(valor);
+
+            carrinho.add(produto);*/
+            carrinho.add("<br>");
+            carrinho.add("teste3");
+            carrinho.add("teste4");
+
+            RequestDispatcher rd = req.getRequestDispatcher("/newjsp.jsp");
+            rd.forward(req,resp);
+        }
     }
 }
