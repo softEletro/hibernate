@@ -1,13 +1,14 @@
 <%-- 
-    Document   : testecar
-    Created on : 11/05/2018, 11:31:48
+    Document   : newjsp
+    Created on : 14/05/2018, 14:51:31
     Author     : bcustodio
 --%>
 
-<%@page import="java.text.NumberFormat"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
-<%@page import="com.bean.Produto"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.bean.Cliente"%>
+<jsp:useBean id="carrinho" scope="session" class="java.util.List" />
+<% int a = 0; %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,26 +16,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <table>
-            <thead>
-                <th>Nome</th>
-                <th>Valor</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <%  
-                List carrinho = (List) session.getAttribute("carrinho");
-                double total = 0;
-                for (int cont = 0; cont < carrinho.size(); cont++) {
-                    Produto p = (Produto) carrinho.get(cont);
-                    total += p.getValor();%>
-                    <tr>
-                        <td><%= p.getNome() %></td>
-                        <td><%= p.getValor() %></td>
-                    </tr>
-                <% } %>
-                Total: <% out.println(NumberFormat.getCurrencyInstance().format(total)); %>
-            </tbody>
-        </table>
+        <%= carrinho %><br><br><br>
+        <% for (int i=0;i<carrinho.size();i++) { %>
+            <%= carrinho.get(i) %>
+        <% } %>
     </body>
 </html>

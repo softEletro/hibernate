@@ -21,12 +21,12 @@
          // <a href="Logout" style="color: red;">Sair da sessão</a>
         <% } %><br><br>
         
-            <% for (int i=0;i<lista.size();i++) {
+        <% for (int i=0;i<lista.size();i++) {
             Cliente cli = (Cliente)lista.get(i); %>
             Nome: <%= cli.getNome() %> Telefone: <%= cli.getTelefone() %>
             <a href="MostraCliente?id=<%= cli.getId() %>">Alterar</a>
             <a href="InativarCliente?id=<%= cli.getId() %>">Inativar</a>
-            <a href="adicionar?idProduto=<%= cli.getId() %>">Compra</a><br />
+            <a href="adicionar?idCliente=<%= cli.getId() %>">Compra</a><br />
         <% } %>
         
         <br><br>

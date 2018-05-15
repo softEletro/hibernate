@@ -5,10 +5,10 @@
  */
 package com.carrinho;
 
-import com.bean.Produto;
+import com.bean.Cliente;
+import com.hibernate.dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,33 +20,26 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author bcustodio
+ * @author leona
  */
-@WebServlet(name = "adicionar", urlPatterns = {"/adicionar"})
-public class adicionar extends HttpServlet {
+@WebServlet(name = "buscar", urlPatterns = {"/buscar"})
+public class buscar extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
         List carrinho = (List) session.getAttribute("carrinho");
+           
+        ClienteDAO dao= new ClienteDAO();
         
-        Produto produto = new Produto();
-        
-        if (carrinho == null) {
-            List car = (List) produto.incluirCarrinho(carrinho);
+        for (int i=0;i<carrinho.size();i++) {
+            int id = (int) carrinho.get(i);
+            Cliente cli = dao.buscaid(id);
             
-            car.add(req.getParameter("idCliente"));
+            String nome = cli.getNome();
             
-            session.setAttribute("carrinho", car);
+            req.setAttribute("nome", nome);
             
-            RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
-            rd.forward(req,resp);
-        } else {
-            carrinho.add("<br>");
-            carrinho.add(req.getParameter("idCliente"));
-            
-            session.setAttribute("carrinho", carrinho);
-
-            RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/testecarjsp");
             rd.forward(req,resp);
         }
     }
