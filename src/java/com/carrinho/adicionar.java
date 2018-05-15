@@ -5,7 +5,9 @@
  */
 package com.carrinho;
 
+import com.bean.Cliente;
 import com.bean.Produto;
+import com.hibernate.dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -34,17 +36,42 @@ public class adicionar extends HttpServlet {
         if (carrinho == null) {
             List car = (List) produto.incluirCarrinho(carrinho);
             
-            car.add(req.getParameter("idCliente"));
+            int idCliente = Integer.parseInt(req.getParameter("idCliente"));
+            car.add(idCliente);
             
             session.setAttribute("carrinho", car);
+            
+            ClienteDAO dao= new ClienteDAO();
+            Cliente cli = dao.buscaid(idCliente);
+
+            String nome = cli.getNome();
+            String sobrenome = cli.getSobrenome();
+            String telefone = cli.getTelefone();
+            String senha = cli.getSenha();
+
+            req.setAttribute("nome", nome);
+            req.setAttribute("sobrenome", sobrenome);
             
             RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
             rd.forward(req,resp);
         } else {
-            carrinho.add("<br>");
-            carrinho.add(req.getParameter("idCliente"));
+            int idCliente = Integer.parseInt(req.getParameter("idCliente"));
+            carrinho.add(idCliente);
             
             session.setAttribute("carrinho", carrinho);
+            
+            ClienteDAO dao= new ClienteDAO();
+            
+            for (int i=0;i<carrinho.size();i++) {
+                int id = (int) carrinho.get(i);
+                Cliente cli = dao.buscaid(id);
+
+                String nome = cli.getNome();
+                String sobrenome = cli.getSobrenome();
+
+                req.setAttribute("nome"+i, nome);
+                req.setAttribute("sobrenome"+i, sobrenome);
+            }
 
             RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
             rd.forward(req,resp);
