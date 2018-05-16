@@ -8,6 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.bean.Cliente"%>
 <jsp:useBean id="carrinho" scope="session" class="java.util.List" />
+
+<jsp:useBean id="nome" scope="request" class="java.util.List" />
+<jsp:useBean id="sobrenome" scope="request" class="java.util.List" />
 <% int a = 0; %>
 <!DOCTYPE html>
 <html>
@@ -17,12 +20,22 @@
     </head>
     <body>
         <%= carrinho %><br><br><br>
-        <% for (int i=0;i<carrinho.size();i++) { 
-            String nome = "nome"+i;
-            String sobrenome = "sobrenome"+i;%>
-            <jsp:useBean id="<%= nome %>" scope="request" class="java.lang.String" />
-            <jsp:useBean id="<%= sobrenome %>" scope="request" class="java.lang.String" />
-            <%= nome %> <%= sobrenome %>
-        <% } %>
+        
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <% for (int x=0;x<nome.size();x++) { %>
+                    <td><%= carrinho.get(x) %></td>
+                    <td><%= nome.get(x) %></td>
+                    <td><%= sobrenome.get(x) %></td>
+                    <td><a href="adicionar?idCliente=<%= carrinho.get(x) %>&teste=sla">Remover</a></td>
+                </tr>
+                <% } %>
+            </tbody>
     </body>
 </html>

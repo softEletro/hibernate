@@ -5,8 +5,6 @@
  */
 package com.carrinho;
 
-import com.bean.Cliente;
-import com.hibernate.dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -20,27 +18,26 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author leona
+ * @author bcustodio
  */
-@WebServlet(name = "buscar", urlPatterns = {"/buscar"})
-public class buscar extends HttpServlet {
+@WebServlet(name = "remover", urlPatterns = {"/remover"})
+public class remover extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
         List carrinho = (List) session.getAttribute("carrinho");
-           
-        ClienteDAO dao= new ClienteDAO();
         
-        for (int i=0;i<carrinho.size();i++) {
-            int id = (int) carrinho.get(i);
-            Cliente cli = dao.buscaid(id);
-            
-            String nome = cli.getNome();
-            
-            req.setAttribute("nome", nome);
-            
-            RequestDispatcher rd = req.getRequestDispatcher("/testecarjsp");
-            rd.forward(req,resp);
+        String idCliente = req.getParameter("idCliente");
+        
+        for (int i=0; i<carrinho.size(); i++) {
+            if (carrinho.get(i).equals(idCliente)) {
+                carrinho.remove(idCliente);
+            }
         }
+        
+        session.setAttribute("carrinho", carrinho);
+        
+        RequestDispatcher rd = req.getRequestDispatcher("adicionar");
+        rd.forward(req,resp);
     }
 }

@@ -33,10 +33,14 @@ public class adicionar extends HttpServlet {
         
         Produto produto = new Produto();
         
+        
+        int idCliente = Integer.parseInt(req.getParameter("idCliente"));
+        
+        List nomex = new ArrayList();
+        List sobrenomex = new ArrayList();
+        
         if (carrinho == null) {
             List car = (List) produto.incluirCarrinho(carrinho);
-            
-            int idCliente = Integer.parseInt(req.getParameter("idCliente"));
             car.add(idCliente);
             
             session.setAttribute("carrinho", car);
@@ -47,14 +51,21 @@ public class adicionar extends HttpServlet {
             String nome = cli.getNome();
             String sobrenome = cli.getSobrenome();
 
-            req.setAttribute("nome", nome);
-            req.setAttribute("sobrenome", sobrenome);
-            
-            RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
-            rd.forward(req,resp);
+            nomex.add(nome);
+            sobrenomex.add(sobrenome);
+
+            req.setAttribute("nome", nomex);
+            req.setAttribute("sobrenome", sobrenomex);
         } else {
-            int idCliente = Integer.parseInt(req.getParameter("idCliente"));
-            carrinho.add(idCliente);
+            if (req.getParameter("teste") == null) {
+                carrinho.add(idCliente);
+            } else {
+                for (int i=0; i<carrinho.size(); i++) {
+                    if (carrinho.get(i).equals(idCliente)) {
+                        carrinho.remove(i);
+                    }
+                }
+            }
             
             session.setAttribute("carrinho", carrinho);
             
@@ -67,12 +78,15 @@ public class adicionar extends HttpServlet {
                 String nome =  cli.getNome();
                 String sobrenome = cli.getSobrenome();
 
-                req.setAttribute("nome"+i, nome);
-                req.setAttribute("sobrenome"+i, sobrenome);
+                nomex.add(nome);
+                sobrenomex.add(sobrenome);
+                
+                req.setAttribute("nome", nomex);
+                req.setAttribute("sobrenome", sobrenomex);
             }
-
-            RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
-            rd.forward(req,resp);
         }
+
+        RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
+        rd.forward(req,resp);
     }
 }
