@@ -46,8 +46,6 @@ public class adicionar extends HttpServlet {
 
             String nome = cli.getNome();
             String sobrenome = cli.getSobrenome();
-            String telefone = cli.getTelefone();
-            String senha = cli.getSenha();
 
             req.setAttribute("nome", nome);
             req.setAttribute("sobrenome", sobrenome);
@@ -66,7 +64,7 @@ public class adicionar extends HttpServlet {
                 int id = (int) carrinho.get(i);
                 Cliente cli = dao.buscaid(id);
 
-                String nome = cli.getNome();
+                String nome =  cli.getNome();
                 String sobrenome = cli.getSobrenome();
 
                 req.setAttribute("nome"+i, nome);
