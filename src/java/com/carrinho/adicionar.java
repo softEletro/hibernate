@@ -33,13 +33,12 @@ public class adicionar extends HttpServlet {
         
         Produto produto = new Produto();
         
-        
         int idCliente = Integer.parseInt(req.getParameter("idCliente"));
         
         List nomex = new ArrayList();
         List sobrenomex = new ArrayList();
         
-        if (carrinho == null) {
+        if (carrinho == null && req.getParameter("teste").equals("a")) {
             List car = (List) produto.incluirCarrinho(carrinho);
             car.add(idCliente);
             
@@ -57,7 +56,7 @@ public class adicionar extends HttpServlet {
             req.setAttribute("nome", nomex);
             req.setAttribute("sobrenome", sobrenomex);
         } else {
-            if (req.getParameter("teste") == null) {
+            if (req.getParameter("teste").equals("a")) {
                 carrinho.add(idCliente);
             } else {
                 for (int i=0; i<carrinho.size(); i++) {

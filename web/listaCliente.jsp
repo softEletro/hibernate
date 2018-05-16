@@ -26,7 +26,7 @@
             Nome: <%= cli.getNome() %> Telefone: <%= cli.getTelefone() %>
             <a href="MostraCliente?id=<%= cli.getId() %>">Alterar</a>
             <a href="InativarCliente?id=<%= cli.getId() %>">Inativar</a>
-            <a href="adicionar?idCliente=<%= cli.getId() %>">Compra</a><br />
+            <a href="adicionar?idCliente=<%= cli.getId() %>&teste=a">Compra</a><br />
         <% } %>
         
         <br><br>
