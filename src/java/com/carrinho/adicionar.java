@@ -55,15 +55,20 @@ public class adicionar extends HttpServlet {
 
             req.setAttribute("nome", nomex);
             req.setAttribute("sobrenome", sobrenomex);
+            
+            
         } else {
             if (req.getParameter("teste").equals("a")) {
                 carrinho.add(idCliente);
+                
             } else {
+               
                 for (int i=0; i<carrinho.size(); i++) {
                     if (carrinho.get(i).equals(idCliente)) {
                         carrinho.remove(i);
                     }
                 }
+            
             }
             
             session.setAttribute("carrinho", carrinho);

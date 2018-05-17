@@ -16,7 +16,7 @@
     <body>
         
         
-        <form action="Carrinho">
+        <form action="AdicionarItensCarrinho">
           <table class="table table-hover">
           <thead>
                         <tr>

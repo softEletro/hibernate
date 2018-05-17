@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AdicionarItensCarrinho", urlPatterns = {"/AdicionarItensCarrinho"})
 public class AdicionarItensCarrinho extends HttpServlet {
 
-     public ArrayList AdicionaItensCarrinho(produto dao, ArrayList Listas) {
+     public ArrayList AdicionaItensCarrinho(cliente dao, ArrayList Listas) {
 		// TODO Auto-generated constructor stub
 		if (Listas == null){
 			Listas = new ArrayList();

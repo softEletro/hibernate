@@ -28,16 +28,17 @@ public class remover extends HttpServlet {
         List carrinho = (List) session.getAttribute("carrinho");
         
         String idCliente = req.getParameter("idCliente");
-        
-        for (int i=0; i<carrinho.size(); i++) {
+      
+            for (int i=0; i<carrinho.size(); i++) {
             if (carrinho.get(i).equals(idCliente)) {
                 carrinho.remove(idCliente);
-            }
-        }
-        
+                        }
+                }
+       
         session.setAttribute("carrinho", carrinho);
         
         RequestDispatcher rd = req.getRequestDispatcher("adicionar");
         rd.forward(req,resp);
     }
+    
 }
