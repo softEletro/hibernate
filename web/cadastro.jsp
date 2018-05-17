@@ -12,7 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="SalvaCliente">
+        <script>
+            function tentativa() {
+                alert("Salvo com sucesso");
+            }
+        </script>
+        <form action="SalvaCliente" onsubmit="tentativa();">
             <label>Nome:</label>
             <input type="text" id="nome" name="nome" value="" /><br />
             <label>Sobrenome:</label>

@@ -6,6 +6,7 @@
 package com.carrinho;
 
 import com.bean.Cliente;
+import com.bean.Produto;
 import com.hibernate.dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,49 +24,38 @@ import javax.servlet.http.HttpSession;
  *
  * @author bcustodio
  */
-@WebServlet(name = "remover", urlPatterns = {"/remover"})
-public class remover extends HttpServlet {
+@WebServlet(name = "mostrar", urlPatterns = {"/mostrar"})
+public class mostrar extends HttpServlet {
     @Override
     protected void service (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
         List carrinho = (List) session.getAttribute("carrinho");
         
-        List nomex = new ArrayList();
-        List sobrenomex = new ArrayList();
-        
-        int idCliente = Integer.parseInt(req.getParameter("idCliente"));
-      
-        for (int i=0; i<carrinho.size(); i++) {
-            if (carrinho.get(i).equals(idCliente)) {
-                carrinho.remove(i);
+        if (carrinho != null) {
+            ClienteDAO dao= new ClienteDAO();
+            Produto produto = new Produto();
+
+            List nomex = new ArrayList();
+            List sobrenomex = new ArrayList();
+
+            for (int i=0;i<carrinho.size();i++) {
+                int id = (int) carrinho.get(i);
+                Cliente cli = dao.buscaid(id);
+
+                String nome =  cli.getNome();
+                String sobrenome = cli.getSobrenome();
+
+                nomex.add(nome);
+                sobrenomex.add(sobrenome);
             }
-        }
-       
-        session.setAttribute("carrinho", carrinho);
-        
-        ClienteDAO dao= new ClienteDAO();
-
-        for (int i=0;i<carrinho.size();i++) {
-            int id = (int) carrinho.get(i);
-            Cliente cli = dao.buscaid(id);
-
-            String nome =  cli.getNome();
-            String sobrenome = cli.getSobrenome();
-
-            nomex.add(nome);
-            sobrenomex.add(sobrenome);
 
             req.setAttribute("nome", nomex);
             req.setAttribute("sobrenome", sobrenomex);
-        }
-        
-        if (carrinho.isEmpty()) {
-            RequestDispatcher rd = req.getRequestDispatcher("ListaCliente");
-            rd.forward(req,resp);
-        } else {
+
             RequestDispatcher rd = req.getRequestDispatcher("/testecar.jsp");
             rd.forward(req,resp);
+        } else {
+            
         }
     }
-    
 }

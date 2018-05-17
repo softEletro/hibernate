@@ -32,19 +32,19 @@ public class adicionar extends HttpServlet {
         List carrinho = (List) session.getAttribute("carrinho");
         
         Produto produto = new Produto();
+        ClienteDAO dao= new ClienteDAO();
         
         int idCliente = Integer.parseInt(req.getParameter("idCliente"));
         
         List nomex = new ArrayList();
         List sobrenomex = new ArrayList();
         
-        if (carrinho == null && req.getParameter("teste").equals("a")) {
+        if (carrinho == null) {
             List car = (List) produto.incluirCarrinho(carrinho);
             car.add(idCliente);
             
             session.setAttribute("carrinho", car);
             
-            ClienteDAO dao= new ClienteDAO();
             Cliente cli = dao.buscaid(idCliente);
 
             String nome = cli.getNome();
@@ -58,22 +58,9 @@ public class adicionar extends HttpServlet {
             
             
         } else {
-            if (req.getParameter("teste").equals("a")) {
-                carrinho.add(idCliente);
-                
-            } else {
-               
-                for (int i=0; i<carrinho.size(); i++) {
-                    if (carrinho.get(i).equals(idCliente)) {
-                        carrinho.remove(i);
-                    }
-                }
-            
-            }
+            carrinho.add(idCliente);
             
             session.setAttribute("carrinho", carrinho);
-            
-            ClienteDAO dao= new ClienteDAO();
             
             for (int i=0;i<carrinho.size();i++) {
                 int id = (int) carrinho.get(i);

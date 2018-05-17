@@ -33,7 +33,7 @@
                     <td><%= carrinho.get(x) %></td>
                     <td><%= nome.get(x) %></td>
                     <td><%= sobrenome.get(x) %></td>
-                    <td><a href="adicionar?idCliente=<%= carrinho.get(x) %>&teste=r">Remover</a></td>
+                    <td><a href="remover?idCliente=<%= carrinho.get(x) %>">Remover</a></td>
                 </tr>
                 <% } %>
             </tbody>

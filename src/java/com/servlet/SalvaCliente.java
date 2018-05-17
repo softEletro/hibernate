@@ -33,7 +33,6 @@ public class SalvaCliente extends HttpServlet {
         ClienteDAO dao = new ClienteDAO();
         dao.salvar(cli);
         
-        PrintWriter out = resp.getWriter();
-        out.print("<script>alert(\"Salvo com sucesso!\");</script>");
+        resp.sendRedirect("ListaCliente");
     }
 }
